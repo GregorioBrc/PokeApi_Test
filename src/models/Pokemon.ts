@@ -28,4 +28,5 @@ export interface Pokemon{
     species: NamedAPIResource;
     stats: PokemonStat[];
     types: PokemonType[];
+    like?: boolean;
 }
