@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import type { Pokemon } from "./models/Pokemon";
-import { PokemonService } from "./services/ApiService.ts/PokemonService";
+import { PokemonService_Api } from "./services/ApiService/PokemonService";
+import {
+  DelPokeLike,
+  SavePokeLike,
+} from "./services/ApiService/StorageService";
 
 function App() {
-  //Prueba Inicial
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     const fun = async () => {
-      const ax = await PokemonService(20);
+      const ax = await PokemonService_Api(20);
       if (ax != null) {
         setPokemons(ax);
       }
@@ -31,9 +34,18 @@ function App() {
         <ul>
           {pokemons.map((item) => (
             <li key={item.id}>
-              {item.name} |{" "}
-              <button onClick={() => likeFunction(item)}> Fav </button> |{" "}
-              {item.like ? <>♥</> : <>•</>}
+              {item.id + " " + item.name} |{" "}
+              <button
+                onClick={() => {
+                  likeFunction(item);
+                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                  item.like ? DelPokeLike(item) : SavePokeLike(item);
+                }}
+              >
+                {" "}
+                Fav{" "}
+              </button>{" "}
+              | {item.like ? <>♥</> : <>•</>}
             </li>
           ))}
         </ul>
