@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { Pokemon } from "../models/Pokemon";
 import { PokemonService_GetById } from "../services/ApiService/PokemonService";
-import Nav_poke from "../components/nav_poke";
+import Nav_poke from "../components/Nav_poke";
 
 function Details() {
   const { id } = useParams();

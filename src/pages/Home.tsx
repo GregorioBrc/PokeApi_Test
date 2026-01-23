@@ -3,7 +3,7 @@ import type { Pokemon } from "../models/Pokemon";
 import { PokemonService_Api } from "../services/ApiService/PokemonService";
 import { Grid } from "@mui/material";
 import Card_Poke from "../components/Card_Poke";
-import Nav_poke from "../components/nav_poke";
+import Nav_poke from "../components/Nav_poke";
 import { Cantidad_Pokemons } from "../Misc/Key_Defini";
 
 function Home() {
