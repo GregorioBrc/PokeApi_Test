@@ -1,7 +1,7 @@
 import type { NamedAPIResource } from "./Misc";
 
 export interface PokemonStat{
-    sta: NamedAPIResource;
+    stat: NamedAPIResource;
     effort: number;
     base_stat: number;
 }

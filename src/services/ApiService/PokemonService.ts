@@ -32,3 +32,16 @@ export async function PokemonService_Api(
 
   return Pokemones;
 }
+
+export async function PokemonService_GetById(
+  id: number,
+): Promise<Pokemon | null> {
+  const response = await axios.get<Pokemon>(`${Link_Api}/pokemon/${id}`);
+  const pokemon = response.data;
+  // Check if it's a favorite
+  const likes_id = getPokemon_IdLike();
+  if (likes_id.includes(pokemon.id)) {
+    pokemon.like = true;
+  }
+  return pokemon;
+}
