@@ -3,6 +3,7 @@ import { getPokemonLike } from "../services/ApiService/StorageService";
 import type { Pokemon } from "../models/Pokemon";
 import { Grid } from "@mui/material";
 import Card_Poke from "../components/Card_Poke";
+import Nav_poke from "../components/nav_poke";
 
 function Favorites() {
   const [favorite, setFavorite] = useState<Pokemon[]>([]);
@@ -17,6 +18,7 @@ function Favorites() {
 
   return (
     <>
+    <Nav_poke></Nav_poke>
       {favorite.length > 0 ? (
         <Grid container spacing={2}>
           {favorite.map((item) => (

@@ -21,17 +21,24 @@ function Card_Poke({ Pokemon, funsetPokemons, isFav }: Card_PokeProps) {
 
   return (
     <>
-      <Card>
+      <Card sx={{ mb: "5px" }}>
         <CardMedia
           component={"img"}
           image={Pokemon.sprites.front_default}
         ></CardMedia>
 
         <Stack direction={"column"}>
-          <Stack direction={"row"} spacing={1} alignContent={"center"} justifyContent={"center"}>
-            <Typography>#{Pokemon.id}</Typography>
-            <Typography>{Pokemon.name}</Typography>
-            <Typography>{Pokemon.like ? <>♥</> : <>•</>}</Typography>
+          <Stack
+            direction={"row"}
+            spacing={1}
+            alignContent={"center"}
+            justifyContent={"center"}
+          >
+            <Typography fontWeight={"bold"}>#{Pokemon.id}</Typography>
+            <Typography fontWeight={"bold"}>{Pokemon.name}</Typography>
+            <Typography fontWeight={"bold"}>
+              {Pokemon.like ? <>♥</> : <>•</>}
+            </Typography>
           </Stack>
 
           <Stack direction={"row"}>
