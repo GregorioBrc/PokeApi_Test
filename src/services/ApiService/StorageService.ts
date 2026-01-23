@@ -5,6 +5,7 @@ import {
 import type { Pokemon } from "../../models/Pokemon";
 
 export function SavePokeLike(Poke: Pokemon) {
+  Poke.like = true;
   const jsonId = localStorage.getItem(localStorageKey_PokeId);
   const jsonPoke = localStorage.getItem(localStorageKey_Poke);
   if (jsonId && jsonPoke) {
@@ -30,6 +31,7 @@ export function SavePokeLike(Poke: Pokemon) {
 }
 
 export function DelPokeLike(Poke: Pokemon) {
+  Poke.like = false;
   const jsonId = localStorage.getItem(localStorageKey_PokeId);
   const jsonPoke = localStorage.getItem(localStorageKey_Poke);
 

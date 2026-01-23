@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  DelPokeLike,
-  getPokemonLike,
-} from "../services/ApiService/StorageService";
+import { getPokemonLike } from "../services/ApiService/StorageService";
 import type { Pokemon } from "../models/Pokemon";
-import { Link } from "react-router-dom";
+import { Grid } from "@mui/material";
+import Card_Poke from "../components/Card_Poke";
 
 function Favorites() {
   const [favorite, setFavorite] = useState<Pokemon[]>([]);
@@ -17,32 +15,14 @@ function Favorites() {
     CargarFav();
   }, []);
 
-  const DeslikeFunction = (Poke: Pokemon) => {
-    DelPokeLike(Poke);
-    setFavorite(getPokemonLike());
-  };
-
   return (
     <>
       {favorite.length > 0 ? (
-        <ul>
+        <Grid container spacing={2}>
           {favorite.map((item) => (
-            <li key={item.id}>
-              {item.id + " " + item.name} |{" "}
-              <button
-                onClick={() => {
-                  DeslikeFunction(item);
-                }}
-              >
-                {" "}
-                Fav{" "}
-              </button>{" "}
-              | ♥ |
-              <img src={item.sprites.front_default} width={80} />|
-              <Link to={"/pokemon/" + item.id}>Details</Link>
-            </li>
+            <Card_Poke Pokemon={item} funsetPokemons={setFavorite} isFav></Card_Poke>
           ))}
-        </ul>
+        </Grid>
       ) : (
         <h1>No Favorites Yet</h1>
       )}

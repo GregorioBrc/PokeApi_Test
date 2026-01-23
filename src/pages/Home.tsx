@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Pokemon } from "../models/Pokemon";
 import { PokemonService_Api } from "../services/ApiService/PokemonService";
-import {
-  DelPokeLike,
-  SavePokeLike,
-} from "../services/ApiService/StorageService";
-import { Link } from "react-router-dom";
+import { Grid } from "@mui/material";
+import Card_Poke from "../components/Card_Poke";
 
 function Home() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -20,37 +17,19 @@ function Home() {
     fun();
   }, []);
 
-  const likeFunction = (poke: Pokemon) => {
-    setPokemons((prevPokemons) =>
-      prevPokemons.map((item) =>
-        item.id === poke.id ? { ...item, like: !poke.like } : item,
-      ),
-    );
-  };
-
   return (
     <>
       {pokemons.length > 0 ? (
-        <ul>
+        <Grid container spacing={2}>
           {pokemons.map((item) => (
-            <li key={item.id}>
-              {item.id + " " + item.name} |{" "}
-              <button
-                onClick={() => {
-                  likeFunction(item);
-                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                  item.like ? DelPokeLike(item) : SavePokeLike(item);
-                }}
-              >
-                {" "}
-                Fav{" "}
-              </button>{" "}
-              | {item.like ? <>♥</> : <>•</>} |
-              <img src={item.sprites.front_default} width={80} />|
-              <Link to={"/pokemon/" + item.id}>Details</Link>
-            </li>
+            <Grid key={item.id}>
+              <Card_Poke
+                Pokemon={item}
+                funsetPokemons={setPokemons}
+              ></Card_Poke>
+            </Grid>
           ))}
-        </ul>
+        </Grid>
       ) : (
         <h1>Cargando</h1>
       )}
