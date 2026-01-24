@@ -6,16 +6,25 @@ import {
   SavePokeLike,
 } from "../services/ApiService/StorageService";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Card_Poke({ Pokemon, funsetPokemons, isFav }: Card_PokeProps) {
   const navigate = useNavigate();
+  const [like, setLike] = useState(Pokemon.like);
 
-  const likeFunction = (poke: Pokemon) => {
-    if (isFav) {
-      DelPokeLike(poke);
-      funsetPokemons(getPokemonLike());
+  const handleLikeClick = () => {
+    const newState = !like;
+    setLike(newState);
+
+    if (newState) {
+      SavePokeLike(Pokemon);
     } else {
-      funsetPokemons((prevPokemons) => prevPokemons.map((item) => item));
+      DelPokeLike(Pokemon);
+    }
+
+    if (isFav) {
+      DelPokeLike(Pokemon);
+      funsetPokemons(getPokemonLike());
     }
   };
 
@@ -39,7 +48,7 @@ function Card_Poke({ Pokemon, funsetPokemons, isFav }: Card_PokeProps) {
             <Typography fontWeight={"bold"}>#{Pokemon.id}</Typography>
             <Typography fontWeight={"bold"}>{Pokemon.name}</Typography>
             <Typography fontWeight={"bold"}>
-              {Pokemon.like ? <>♥</> : <>•</>}
+              {like ? <>♥</> : <>•</>}
             </Typography>
           </Stack>
 
@@ -54,12 +63,10 @@ function Card_Poke({ Pokemon, funsetPokemons, isFav }: Card_PokeProps) {
 
             <Button
               onClick={() => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                Pokemon.like ? DelPokeLike(Pokemon) : SavePokeLike(Pokemon);
-                likeFunction(Pokemon);
+                handleLikeClick();
               }}
             >
-              {Pokemon.like ? <>DisLike</> : <>Like</>}
+              {like ? <>DisLike</> : <>Like</>}
             </Button>
           </Stack>
         </Stack>
