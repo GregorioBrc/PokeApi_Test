@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { Pokemon } from "../models/Pokemon";
 import { PokemonService_GetById } from "../services/ApiService/PokemonService";
@@ -45,20 +45,32 @@ function Details() {
 
   if (error) {
     return (
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h4" color="error">
-          Error: {error}
-        </Typography>
-        <Link to="/">Back</Link>
-      </Container>
+      <>
+        <Nav_poke />
+        <Container sx={{ mt: 4 }}>
+          <Typography variant="h4" color="error">
+            Error: {error}
+          </Typography>
+        </Container>
+      </>
     );
   }
 
   if (pokemon == null) {
     return (
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="h5">Cargando...</Typography>
-      </Container>
+      <>
+        <Nav_poke />
+        <Container sx={{ mt: 4 }}>
+          <Typography
+            width={"100%"}
+            textAlign={"center"}
+            variant="h5"
+            fontWeight={"bold"}
+          >
+            Cargando...
+          </Typography>
+        </Container>
+      </>
     );
   }
 

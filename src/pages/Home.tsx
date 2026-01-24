@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Pokemon } from "../models/Pokemon";
 import { PokemonService_Api } from "../services/ApiService/PokemonService";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Card_Poke from "../components/Card_Poke";
 import Nav_poke from "../components/Nav_poke";
 import { Cantidad_Pokemons } from "../Misc/Key_Defini";
@@ -25,7 +25,7 @@ function Home() {
       {pokemons.length > 0 ? (
         <Grid container spacing={3} justifyContent={"space-evenly"}>
           {pokemons.map((item) => (
-            <Grid key={item.id} sx={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+            <Grid key={item.id}>
               <Card_Poke
                 Pokemon={item}
                 funsetPokemons={setPokemons}
@@ -34,7 +34,14 @@ function Home() {
           ))}
         </Grid>
       ) : (
-        <h1>Cargando</h1>
+        <Typography
+          width={"100%"}
+          textAlign={"center"}
+          variant="h5"
+          fontWeight={"bold"}
+        >
+          Cargando...
+        </Typography>
       )}
     </>
   );
