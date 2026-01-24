@@ -4,7 +4,6 @@ import {
   Container,
   Link,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -15,9 +14,16 @@ export function Nav_poke() {
         <Container maxWidth="xl">
           <Toolbar>
             <Box>
-              <Typography variant="h5" color="black">
+              <Link
+                component={RouteLink}
+                to={"/"}
+                variant="h5"
+                color="#000"
+                underline="none"
+                fontWeight={"bold"}
+              >
                 PokeDex
-              </Typography>
+              </Link>
             </Box>
             <Box
               margin={"0px 0px 0px auto"}
@@ -29,7 +35,7 @@ export function Nav_poke() {
                 component={RouteLink}
                 to={"/"}
                 variant="h6"
-                color="#fff"
+                color="#000"
                 underline="none"
               >
                 Home
@@ -38,7 +44,7 @@ export function Nav_poke() {
                 component={RouteLink}
                 to={"/favorites"}
                 variant="h6"
-                color="#fff"
+                color="#000"
                 underline="none"
               >
                 Favoritos

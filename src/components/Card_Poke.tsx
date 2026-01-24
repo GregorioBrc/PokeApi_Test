@@ -25,6 +25,8 @@ function Card_Poke({ Pokemon, funsetPokemons, isFav }: Card_PokeProps) {
         <CardMedia
           component={"img"}
           image={Pokemon.sprites.front_default}
+          sx={{ objectFit: "contain", padding: 1 }}
+          height="120px"
         ></CardMedia>
 
         <Stack direction={"column"}>

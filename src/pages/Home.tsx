@@ -23,9 +23,9 @@ function Home() {
     <>
       <Nav_poke></Nav_poke>
       {pokemons.length > 0 ? (
-        <Grid container spacing={3} justifyContent={"space-evenly"} >
+        <Grid container spacing={3} justifyContent={"space-evenly"}>
           {pokemons.map((item) => (
-            <Grid key={item.id}>
+            <Grid key={item.id} sx={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
               <Card_Poke
                 Pokemon={item}
                 funsetPokemons={setPokemons}
